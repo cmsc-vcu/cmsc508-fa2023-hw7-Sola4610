@@ -1,6 +1,6 @@
 ---
 title: Homework 7 - Creating a resume database
-author: (your name goes here!)
+author: Solaris Serrano
 date: last-modified
 format:
     html:
@@ -10,11 +10,11 @@ format:
         code-copy: true
 ---
 
-(include a brief description of what is in this document)
+This Document includes and overview of the Hw7 and a description. As well as a Crow's Foot Diagram, Examples of data, sample queries, a list of skills, tags, and ordered descritpions, and an overall refelctions
 
-(Please clean up any comments that I included.  This is a scaffold document.)
 
-GITHUB URL:  <your URL goes here!>
+
+GITHUB URL:  https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-Sola4610
 
 ```{python}
 #| eval: true
@@ -91,12 +91,12 @@ except Exception as e:
 ```
 
 ## Overview and description
-
-(briefly describe the project and the database)
+creating a resume database.working with a MySQL database, connecting to it using Python and the SQLAlchemy library. Loads and stores configuration parameters (database credentials) from the .env file.
+Creates a SQLAlchemy database connection engine.Checks the database connection and prints any errors encountered during the connection attempt. Provides descriptions and data listings for tables in the database: People, Skills, and Roles.
 
 ## Crows-foot diagram
 
-(add a description of the diagram and what the reader is seeing.)
+Entity-Relationship (ER) diagram that visually represents the structure of the database schema. 
 
 ```{mermaid}
 %%| echo: false
@@ -149,8 +149,18 @@ Below is a list of data in the *skills* table.
 ```{python}
 #| echo: false
 #| eval: true
-
+sql = f"""
+select * from skills;
+"""
 ## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
 ```
 
 ### Roles table
@@ -162,8 +172,18 @@ Below is a list of data in the *roles* table.
 ```{python}
 #| echo: false
 #| eval: true
-
+sql = f"""
+select * from roles;
+"""
 ## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
 ```
 
 
@@ -200,30 +220,158 @@ df
 
 
 ### List people names and email addresses ordered by last_name
-
-
+```{python}
+sql = f"""
+SELECT first_name, last_name, email
+FROM people
+ORDER BY last_name
+"""
+## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 ### List skill names of Person 1
-
+```{python}
+sql = f"""
+SELECT s.name AS skill_name
+FROM peopleskills ps
+JOIN skills s ON ps.skills_id = s.id
+WHERE ps.people_id = 1;
+"""
+## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List people names with Skill 6
-
-
+```{python}
+sql = f"""
+SELECT DISTINCT p.first_name, p.last_name
+FROM people p
+JOIN peopleskills ps ON p.id = ps.people_id
+WHERE ps.skills_id = 6;
+"""
+## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 ### List people with a DEVELOPER role
-
+```{python}
+sql = f"""
+SELECT  DISTINCT p.first_name, p.last_name
+FROM people p
+JOIN people_roles pr ON p.id = pr.people_id
+JOIN roles r ON pr.role_id = r.id
+WHERE r.name = 'DEVELOPER';
+"""
+## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List names and email addresses of people without skills
-
+```{python}
+sql = f"""
+SELECT people.first_name, people.last_name, people.email
+FROM people
+LEFT JOIN peopleskills ON people.id = peopleskills.people_id
+WHERE peopleskills.id IS NULL
+"""
+## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List names and tags of unused skills
-
+```{python}
+sql = f"""
+SELECT skills.name, skills.tag
+FROM skills
+LEFT JOIN peopleskills ON skills.id = peopleskills.skills_id
+WHERE peopleskills.id IS NULL
+"""
+## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List people names and skill names with the BOSS role
-
+```{python}
+sql = f"""
+SELECT DISTINCT p.first_name, p.last_name, s.name AS skill_name
+FROM people p
+JOIN people_roles pr ON p.id = pr.people_id
+JOIN roles r ON pr.role_id = r.id
+LEFT JOIN peopleskills ps ON p.id = ps.people_id
+LEFT JOIN skills s ON ps.skills_id = s.id
+WHERE r.name = 'BOSS';
+"""
+## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ### List ids and names of unused roles
-
+```{python}
+sql = f"""
+SELECT r.id, r.name
+FROM roles r
+LEFT JOIN people_roles pr ON r.id = pr.role_id
+WHERE pr.people_id IS NULL
+"""
+## Add code to list roles table here
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 ## Reflection
 
-(Write a paragraph expressing your thoughts, feelings, and insights about your experience with this assignment.  Pause and breath before writing - I'm trying to encourage critical thinking and self-awareness while allowing you to explore the connections between theory and practice. And yes, delete this paragraph.)
-
+Overall I already had some SQL knowledge and this wasn't too hard. It was like a refresher in terms of what I was doing. I feel for the examples for some of them could use more description like ones that asked for "unused".
