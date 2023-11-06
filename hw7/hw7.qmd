@@ -101,16 +101,52 @@ Entity-Relationship (ER) diagram that visually represents the structure of the d
 ```{mermaid}
 %%| echo: false
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
+    SKILLS ||--o{ PEOPLE_SKILLS : "1-M"
+    PEOPLE ||--o{ PEOPLE_SKILLS : "1-M"
+    PEOPLE ||--o{ PEOPLE_ROLES : "1-M"
+    ROLES ||--o{ PEOPLE_ROLES : "1-M"
+
+    SKILLS {
+        int ID
+        string name
+        string description
+        string tag
+        string url
+        int time_commitment
+    }
+    
+    PEOPLE {
+        int ID
         string first_name
         string last_name
+        string email
+        string linkedin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        date date_joined
     }
-    DELIVERY-ADDRESS {
-        int id
+
+    PEOPLE_SKILLS {
+        int ID
+        int skills_id
+        int people_id
+        date date_acquired
     }
+
+    ROLES {
+        int ID
+        string name
+        int sort_priority
+    }
+
+    PEOPLE_ROLES {
+        int ID
+        int people_id
+        int role_id
+        date date_role_acquired
+    }
+
 ```
 
 ## Examples of data in the database
@@ -374,4 +410,4 @@ df
 
 ## Reflection
 
-Overall I already had some SQL knowledge and this wasn't too hard. It was like a refresher in terms of what I was doing. I feel for the examples for some of them could use more description like ones that asked for "unused".
+Overall I already had some SQL knowledge and this wasn't too hard. It was like a refresher in terms of what I was doing. I feel for the examples for some of them could use more description like ones that asked for "unused". I just got a little confused on those ones, but overall I didn't have any issues with this assignment.

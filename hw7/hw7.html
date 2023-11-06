@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Solaris Serrano">
-<meta name="dcterms.date" content="2023-11-01">
+<meta name="dcterms.date" content="2023-11-06">
 
 <title>Homework 7 - Creating a resume database</title>
 <style>
@@ -3363,7 +3363,7 @@ z-index: 1000;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 1, 2023</p>
+      <p class="date">November 6, 2023</p>
     </div>
   </div>
   
@@ -3387,16 +3387,52 @@ z-index: 1000;
 <div>
 <div>
 <pre class="mermaid mermaid-js">erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
+    SKILLS ||--o{ PEOPLE_SKILLS : &quot;1-M&quot;
+    PEOPLE ||--o{ PEOPLE_SKILLS : &quot;1-M&quot;
+    PEOPLE ||--o{ PEOPLE_ROLES : &quot;1-M&quot;
+    ROLES ||--o{ PEOPLE_ROLES : &quot;1-M&quot;
+
+    SKILLS {
+        int ID
+        string name
+        string description
+        string tag
+        string url
+        int time_commitment
+    }
+    
+    PEOPLE {
+        int ID
         string first_name
         string last_name
+        string email
+        string linkedin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        date date_joined
     }
-    DELIVERY-ADDRESS {
-        int id
+
+    PEOPLE_SKILLS {
+        int ID
+        int skills_id
+        int people_id
+        date date_acquired
     }
+
+    ROLES {
+        int ID
+        string name
+        int sort_priority
+    }
+
+    PEOPLE_ROLES {
+        int ID
+        int people_id
+        int role_id
+        date date_role_acquired
+    }
+
 </pre>
 </div>
 </div>
@@ -3411,7 +3447,7 @@ z-index: 1000;
 <p>The <em>people</em> table contains elements that describe …</p>
 <p>Below is a list of data in the <em>people</em> table.</p>
 <div class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -3515,7 +3551,7 @@ z-index: 1000;
 <p>The <em>skills</em> table contains elements that describe …</p>
 <p>Below is a list of data in the <em>skills</em> table.</p>
 <div class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display" data-execution_count="57">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -3616,7 +3652,7 @@ z-index: 1000;
 <p>The <em>roles</em> table contains elements that describe …</p>
 <p>Below is a list of data in the <em>roles</em> table.</p>
 <div class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="58">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
 
@@ -3688,7 +3724,7 @@ z-index: 1000;
 </div>
 <p>(and here is a sample result from the query)</p>
 <div class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="60">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <div>
 
 
@@ -3803,7 +3839,7 @@ z-index: 1000;
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;An error occurred:</span><span class="ch">\n\n</span><span class="sc">{</span>message<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Ignoring and moving on.&quot;</span>)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
@@ -3878,7 +3914,7 @@ z-index: 1000;
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;An error occurred:</span><span class="ch">\n\n</span><span class="sc">{</span>message<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Ignoring and moving on.&quot;</span>)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
@@ -3939,7 +3975,7 @@ z-index: 1000;
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;An error occurred:</span><span class="ch">\n\n</span><span class="sc">{</span>message<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Ignoring and moving on.&quot;</span>)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="63">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
 
@@ -3988,7 +4024,7 @@ z-index: 1000;
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;An error occurred:</span><span class="ch">\n\n</span><span class="sc">{</span>message<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Ignoring and moving on.&quot;</span>)</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="64">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -4041,7 +4077,7 @@ z-index: 1000;
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;An error occurred:</span><span class="ch">\n\n</span><span class="sc">{</span>message<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Ignoring and moving on.&quot;</span>)</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="65">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
 
@@ -4086,7 +4122,7 @@ z-index: 1000;
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;An error occurred:</span><span class="ch">\n\n</span><span class="sc">{</span>message<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Ignoring and moving on.&quot;</span>)</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="66">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
 
@@ -4137,7 +4173,7 @@ z-index: 1000;
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;An error occurred:</span><span class="ch">\n\n</span><span class="sc">{</span>message<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Ignoring and moving on.&quot;</span>)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="67">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
 
@@ -4194,7 +4230,7 @@ z-index: 1000;
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;An error occurred:</span><span class="ch">\n\n</span><span class="sc">{</span>message<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Ignoring and moving on.&quot;</span>)</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="68">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -4216,7 +4252,7 @@ z-index: 1000;
 </section>
 <section id="reflection" class="level2">
 <h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
-<p>Overall I already had some SQL knowledge and this wasn’t too hard. It was like a refresher in terms of what I was doing. I feel for the examples for some of them could use more description like ones that asked for “unused”.</p>
+<p>Overall I already had some SQL knowledge and this wasn’t too hard. It was like a refresher in terms of what I was doing. I feel for the examples for some of them could use more description like ones that asked for “unused”. I just got a little confused on those ones, but overall I didn’t have any issues with this assignment.</p>
 </section>
 </section>
 
