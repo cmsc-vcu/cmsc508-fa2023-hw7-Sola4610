@@ -275,7 +275,7 @@ df
 ### List skill names of Person 1
 ```{python}
 sql = f"""
-SELECT s.name AS skill_name
+SELECT  DISTINCT s.name AS skill_name
 FROM peopleskills ps
 JOIN skills s ON ps.skills_id = s.id
 WHERE ps.people_id = 1;
