@@ -28,6 +28,15 @@ SET FOREIGN_KEY_CHECKS=1;
 # time committment offers some sense of how much time was required (or will be required) to gain the skill.
 # You can assign the skill descriptions.  Please be creative!
 
+CREATE TABLE skills (
+    id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    tag VARCHAR(50) NOT NULL,
+    url VARCHAR(255) DEFAULT NULL,
+    time_commitment INT DEFAULT NULL,
+    PRIMARY KEY (id)
+);
 
 # Section 3
 # Populate skills
