@@ -79,8 +79,6 @@ CREATE TABLE people (
 # Populate people with six people.
 # Their last names must exactly be “Person 1”, “Person 2”, etc.
 # Other fields are for you to assign.
-
--- Insert data for six people into the 'people' table
 INSERT INTO people (id, first_name, last_name, email, linkedin_url, headshot_url, discord_handle, brief_bio, date_joined)
 VALUES
     (1, 'John', 'Person 1', 'john.person1@example.com', 'LinkedIn1', 'Headshot1', 'Discord1', 'Bio1', '2023-01-01'),
@@ -89,7 +87,7 @@ VALUES
     (4, 'Bob', 'Person 4', 'bob.person4@example.com', 'LinkedIn4', 'Headshot4', 'Discord4', 'Bio4', '2023-01-04'),
     (5, 'Eve', 'Person 5', 'eve.person5@example.com', 'LinkedIn5', 'Headshot5', 'Discord5', 'Bio5', '2023-01-05'),
     (6, 'Charlie', 'Person 6', 'charlie.person6@example.com', 'LinkedIn6', 'Headshot6', 'Discord6', 'Bio6', '2023-01-06');
-    (7, 'David', 'Person 7', 'david.person7@example.com', 'LinkedIn7', 'Headshot7', 'Discord7', 'Bio7', '2023-01-07'),
+     (7, 'David', 'Person 7', 'david.person7@example.com', 'LinkedIn7', 'Headshot7', 'Discord7', 'Bio7', '2023-01-07'),
     (8, 'Ella', 'Person 8', 'ella.person8@example.com', 'LinkedIn8', 'Headshot8', 'Discord8', 'Bio8', '2023-01-08'),
     (9, 'Frank', 'Person 9', 'frank.person9@example.com', 'LinkedIn9', 'Headshot9', 'Discord9', 'Bio9', '2023-01-09'),
     (10, 'Grace', 'Person 10', 'grace.person10@example.com', 'LinkedIn10', 'Headshot10', 'Discord10', 'Bio10', '2023-01-10');
@@ -196,12 +194,6 @@ CREATE TABLE roles (
 # Designer, Developer, Recruit, Team Lead, Boss, Mentor
 # Sort priority is assigned numerically in the order listed above (Designer=10, Developer=20, Recruit=30, etc.)
 
-
-
-# Section 10
-# Create peopleroles( id, people_id, role_id, date_assigned )
-# None of the fields can be null.  ID can be auto_increment
-
 INSERT INTO roles (name, sort_priority) VALUES
     ('Designer', 10),
     ('Developer', 20),
@@ -211,6 +203,16 @@ INSERT INTO roles (name, sort_priority) VALUES
     ('Mentor', 60);
 
 
+# Section 10
+# Create peopleroles( id, people_id, role_id, date_assigned )
+# None of the fields can be null.  ID can be auto_increment
+
+CREATE TABLE people_roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    people_id INT NOT NULL,
+    role_id INT NOT NULL,
+    date_assigned DATE NOT NULL
+);
 # Section 11
 # Populate peopleroles
 # Person 1 is Developer 
@@ -224,32 +226,15 @@ INSERT INTO roles (name, sort_priority) VALUES
 # Person 9 is Developer
 # Person 10 is Developer and Designer
 
--- Person 1
-INSERT INTO people_roles (people_id, role_id) VALUES (1, 2);  -- Developer
-
--- Person 2
-INSERT INTO people_roles (people_id, role_id) VALUES (2, 5), (2, 6);  -- Boss, Mentor
-
--- Person 3
-INSERT INTO people_roles (people_id, role_id) VALUES (3, 2), (3, 4);  -- Developer, Team Lead
-
--- Person 4
-INSERT INTO people_roles (people_id, role_id) VALUES (4, 3);  -- Recruit
-
--- Person 5
-INSERT INTO people_roles (people_id, role_id) VALUES (5, 3);  -- Recruit
-
--- Person 6
-INSERT INTO people_roles (people_id, role_id) VALUES (6, 2), (6, 1);  -- Developer, Designer
-
--- Person 7
-INSERT INTO people_roles (people_id, role_id) VALUES (7, 1);  -- Designer
-
--- Person 8
-INSERT INTO people_roles (people_id, role_id) VALUES (8, 1), (8, 4);  -- Designer, Team Lead
-
--- Person 9
-INSERT INTO people_roles (people_id, role_id) VALUES (9, 2);  -- Developer
-
--- Person 10
-INSERT INTO people_roles (people_id, role_id) VALUES (10, 2), (10, 1);  -- Developer, Designer
+INSERT INTO people_roles (people_id, role_id)
+VALUES
+    (1, 2), -- Person 1 (Developer)
+    (2, 5), (2, 6), -- Person 2 (Boss, Mentor)
+    (3, 2), (3, 4), -- Person 3 (Developer, Team Lead)
+    (4, 3), -- Person 4 (Recruit)
+    (5, 3), -- Person 5 (Recruit)
+    (6, 2), (6, 1), -- Person 6 (Developer, Designer)
+    (7, 1), -- Person 7 (Designer)
+    (8, 1), (8, 4), -- Person 8 (Designer, Team Lead)
+    (9, 2), -- Person 9 (Developer)
+    (10, 2), (10, 1); -- Person 10 (Developer, Designer)
