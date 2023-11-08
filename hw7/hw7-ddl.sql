@@ -122,7 +122,9 @@ CREATE TABLE peopleskills (
 # Note that no one has yet acquired skills 7 and 8.
 -- Person 1 has skills 1, 3, 6
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
-VALUES (1, 1, '2023-01-15');
+VALUES (1, 1, '2023-01-15'),
+       (3, 1, '2023-02-20'),
+       (6, 1, '2023-03-25');
 
 -- Person 2 has skills 3, 4, 5
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
@@ -172,9 +174,7 @@ INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (1, 10, '2023-01-10'),
        (4, 10, '2023-02-15'),
        (5, 10, '2023-03-20');
--- Missing record: Person 2 has skill 8
-INSERT INTO peopleskills (skills_id, people_id, date_acquired)
-VALUES (8, 2, '2023-03-25');
+
 
 
 # Section 8
