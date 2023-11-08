@@ -87,7 +87,7 @@ VALUES
     (4, 'Bob', 'Person 4', 'bob.person4@example.com', 'LinkedIn4', 'Headshot4', 'Discord4', 'Bio4', '2023-01-04'),
     (5, 'Eve', 'Person 5', 'eve.person5@example.com', 'LinkedIn5', 'Headshot5', 'Discord5', 'Bio5', '2023-01-05'),
     (6, 'Charlie', 'Person 6', 'charlie.person6@example.com', 'LinkedIn6', 'Headshot6', 'Discord6', 'Bio6', '2023-01-06');
-     (7, 'David', 'Person 7', 'david.person7@example.com', 'LinkedIn7', 'Headshot7', 'Discord7', 'Bio7', '2023-01-07'),
+   (7, 'David', 'Person 7', 'david.person7@example.com', 'LinkedIn7', 'Headshot7', 'Discord7', 'Bio7', '2023-01-07'),
     (8, 'Ella', 'Person 8', 'ella.person8@example.com', 'LinkedIn8', 'Headshot8', 'Discord8', 'Bio8', '2023-01-08'),
     (9, 'Frank', 'Person 9', 'frank.person9@example.com', 'LinkedIn9', 'Headshot9', 'Discord9', 'Bio9', '2023-01-09'),
     (10, 'Grace', 'Person 10', 'grace.person10@example.com', 'LinkedIn10', 'Headshot10', 'Discord10', 'Bio10', '2023-01-10');
@@ -175,6 +175,7 @@ INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (1, 10, '2023-01-10'),
        (4, 10, '2023-02-15'),
        (5, 10, '2023-03-20');
+
 
 
 # Section 8
