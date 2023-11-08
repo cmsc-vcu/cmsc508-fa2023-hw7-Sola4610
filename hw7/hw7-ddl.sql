@@ -86,8 +86,8 @@ VALUES
     (3, 'Alice', 'Person 3', 'alice.person3@example.com', 'LinkedIn3', 'Headshot3', 'Discord3', 'Bio3', '2023-01-03'),
     (4, 'Bob', 'Person 4', 'bob.person4@example.com', 'LinkedIn4', 'Headshot4', 'Discord4', 'Bio4', '2023-01-04'),
     (5, 'Eve', 'Person 5', 'eve.person5@example.com', 'LinkedIn5', 'Headshot5', 'Discord5', 'Bio5', '2023-01-05'),
-    (6, 'Charlie', 'Person 6', 'charlie.person6@example.com', 'LinkedIn6', 'Headshot6', 'Discord6', 'Bio6', '2023-01-06');
-   (7, 'David', 'Person 7', 'david.person7@example.com', 'LinkedIn7', 'Headshot7', 'Discord7', 'Bio7', '2023-01-07'),
+    (6, 'Charlie', 'Person 6', 'charlie.person6@example.com', 'LinkedIn6', 'Headshot6', 'Discord6', 'Bio6', '2023-01-06'),
+    (7, 'David', 'Person 7', 'david.person7@example.com', 'LinkedIn7', 'Headshot7', 'Discord7', 'Bio7', '2023-01-07'),
     (8, 'Ella', 'Person 8', 'ella.person8@example.com', 'LinkedIn8', 'Headshot8', 'Discord8', 'Bio8', '2023-01-08'),
     (9, 'Frank', 'Person 9', 'frank.person9@example.com', 'LinkedIn9', 'Headshot9', 'Discord9', 'Bio9', '2023-01-09'),
     (10, 'Grace', 'Person 10', 'grace.person10@example.com', 'LinkedIn10', 'Headshot10', 'Discord10', 'Bio10', '2023-01-10');
@@ -125,18 +125,18 @@ CREATE TABLE peopleskills (
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (1, 1, '2023-01-15'),
        (3, 1, '2023-02-20'),
-       (6, 1, '2023-03-25');
+       (6, 1, '2023-03-25')
 
 -- Person 2 has skills 3, 4, 5
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (3, 2, '2023-01-10'),
        (4, 2, '2023-02-15'),
-       (5, 2, '2023-03-20');
+       (5, 2, '2023-03-20')
 
 -- Person 3 has skills 1, 5
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (1, 3, '2023-01-05'),
-       (5, 3, '2023-02-10');
+       (5, 3, '2023-02-10')
 
 -- Person 4 has no skills (no INSERT needed).
 
@@ -149,13 +149,13 @@ VALUES (3, 5, '2023-01-15'),
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (2, 6, '2023-01-10'),
        (3, 6, '2023-02-15'),
-       (4, 6, '2023-03-20');
+       (4, 6, '2023-03-20')
 
 -- Person 7 has skills 3, 5, 6
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (3, 7, '2023-01-05'),
        (5, 7, '2023-02-10'),
-       (6, 7, '2023-03-15');
+       (6, 7, '2023-03-15')
 
 -- Person 8 has skills 1, 3, 5, 6
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
@@ -168,13 +168,13 @@ VALUES (1, 8, '2023-01-10'),
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (2, 9, '2023-01-05'),
        (5, 9, '2023-02-10'),
-       (6, 9, '2023-03-15');
+       (6, 9, '2023-03-15')
 
 -- Person 10 has skills 1, 4, 5
 INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (1, 10, '2023-01-10'),
        (4, 10, '2023-02-15'),
-       (5, 10, '2023-03-20');
+       (5, 10, '2023-03-20')
 
 
 
