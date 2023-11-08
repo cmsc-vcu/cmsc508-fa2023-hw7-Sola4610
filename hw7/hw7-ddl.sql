@@ -225,7 +225,7 @@ CREATE TABLE people_roles (
 # Person 8 is Designer and Team Lead
 # Person 9 is Developer
 # Person 10 is Developer and Designer
- INSERT INTO people_roles (id, people_id, role_id, date_assigned)
+ INSERT INTO peopleroles (id, people_id, role_id, date_assigned)
 VALUES
     (1, 1, 2, '2023-01-01'),
     (2, 2, 5, '2023-01-02'),
