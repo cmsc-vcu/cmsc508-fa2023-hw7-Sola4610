@@ -172,6 +172,9 @@ INSERT INTO peopleskills (skills_id, people_id, date_acquired)
 VALUES (1, 10, '2023-01-10'),
        (4, 10, '2023-02-15'),
        (5, 10, '2023-03-20');
+-- Missing record: Person 2 has skill 8
+INSERT INTO peopleskills (skills_id, people_id, date_acquired)
+VALUES (8, 2, '2023-03-25');
 
 
 # Section 8
